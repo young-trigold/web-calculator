@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Web Calculator</title>
+    <meta charset="utf-8" />
+    <meta name="application-name" content="Web Calculator" />
+    <meta name="author" content="Trigold" />
+    <meta name="keywords" content="Calculator,Web" />
+    <meta
+      name="description"
+      content="A simple calculator with + - * / () functions"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    
+  </head>
+  <body>
+    <main>
+      <input type="text" id="input" autofocus="true" disabled="true" />
+      <div id="result"></div>
+      <div style="height: 1px; background-color: rgb(0 0 0 / 0.2)"></div>
+      <section id="keyboard">
+        <div class="item operator" id="allClear">AC</div>
+        <div class="item operator" id="backspace">⌫</div>
+        <div class="item operator" id="pos-neg">±</div>
+        <div class="item operator">÷</div>
+        <div class="item">7</div>
+        <div class="item">8</div>
+        <div class="item">9</div>
+        <div class="item operator">×</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="item operator">-</div>
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item operator">+</div>
+        <div class="item">%</div>
+        <div class="item">0</div>
+        <div class="item">.</div>
+        <div class="item operator" id="eq">=</div>
+      </section>
+    </main>
+    <script src="main.js"></script>
+  </body>
+</html>
