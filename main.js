@@ -4,29 +4,47 @@ const inputEle = $("*#input")[0];
 const resultEle = $("*#result")[0];
 const items = $(".item");
 
-
+/**
+ * -1+1 => (-1)+1
+ * @param {string} form 
+ * @returns {string}
+ */
 function normalize(form) {
   let tempStr = form;
   const badNegNumPattern = /^-\d+(\.\d+)?%?/g;
+
   if (badNegNumPattern.test(tempStr)) {
     let badNegNum = tempStr.match(badNegNumPattern)[0];
     let goodNegNum = "(" + badNegNum + ")";
     tempStr = tempStr.replace(badNegNum, goodNegNum);
   }
+
   return tempStr;
 }
 
+/**
+ * 
+ * @param {string} numStr 
+ * @returns 
+ */
 function denormalize(numStr) {
   let tempStr = numStr;
   const badNegNumPattern = /^\(-\d+(\.\d+)?\)/g;
+
   if (badNegNumPattern.test(tempStr)) {
     let badNegNum = tempStr.match(badNegNumPattern)[0];
     let goodNegNum = badNegNum.slice(1, -1);
     tempStr = tempStr.replace(badNegNum, goodNegNum);
   }
+
   return tempStr;
 }
 
+/**
+ * 
+ * @param {*} str 
+ * @returns 
+ */
 function calculateALLMA(str) {
   // 处理 0.1 + 0.2
   function getPrecision(num1, num2, type) {
@@ -51,6 +69,11 @@ function calculateALLMA(str) {
 
   const NegNumPattern = /\(-\d+(\.\d+)?%?\)/g;
 
+  /**
+   * 
+   * @param {*} numStr 
+   * @returns 
+   */
   function parseNum(numStr) {
     if (numStr.search(NegNumPattern) === -1) {
       if (numStr.lastIndexOf("%") === -1) {
@@ -67,6 +90,11 @@ function calculateALLMA(str) {
     }
   }
 
+  /**
+   * 
+   * @param {*} E 
+   * @returns 
+   */
   function calculateAllM(E) {
     function calculateM(form) {
       let tempStr = normalize(form);
@@ -113,6 +141,11 @@ function calculateALLMA(str) {
     return tempStr;
   }
 
+  /**
+   * 
+   * @param {*} E 
+   * @returns 
+   */
   function calculateAllA(E) {
     function calculateA(form) {
       let tempStr = normalize(form);
@@ -167,6 +200,11 @@ function calculateALLMA(str) {
     return "Error!";
   }
 }
+
+/**
+ * 
+ * @param {*} e 
+ */
 function update(e) {
   const inputStr = e.srcElement.value;
   const result = calculateALLMA(inputStr);
@@ -177,23 +215,24 @@ inputEle.addEventListener("input", update);
 inputEle.addEventListener("change", update);
 
 let eqFlag = false;
-document.querySelector("#eq").addEventListener("click", () => {
+
+$("#eq")[0].addEventListener("click", () => {
   eqFlag = true;
   inputEle.value = resultEle.textContent;
   resultEle.textContent = "";
 });
 
-document.querySelector("#backspace").addEventListener("click", () => {
+$("#backspace")[0].addEventListener("click", () => {
   inputEle.value = inputEle.value.slice(0, inputEle.value.length - 1);
   inputEle.dispatchEvent(new Event("change"));
 });
 
-document.querySelector("#allClear").addEventListener("click", () => {
+$("#allClear")[0].addEventListener("click", () => {
   inputEle.value = "";
   resultEle.textContent = "";
 });
 
-document.querySelector("#pos-neg").addEventListener("click", () => {
+$("#pos-neg")[0].addEventListener("click", () => {
   const inputStr = inputEle.value;
   const tempStr = normalize(inputStr);
   const numStrs = tempStr.match(/((\(-\d+(\.\d+)?%?\))|(\d+(\.\d+)?%?))/g);
