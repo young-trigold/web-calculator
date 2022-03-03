@@ -219,15 +219,14 @@ $('#pos-neg')[0].addEventListener('click', () => {
   const isNeg = /\(-\d+(\.\d+)?\)/g.test(numStr);
 
   if (isNeg) {
-    _numStr_ = numStr.match(/(\d+(\.\d+)?)/)[0];
+    [_numStr_] = [numStr.match(/(\d+(\.\d+)?)/)];
   } else {
     _numStr_ = `(-${numStr})`;
   }
 
-  const replacement = denormalize(
+  inputEle.value = denormalize(
     tempStr.slice(0, numStrIndex) + _numStr_ + tempStr.slice(numStrIndex + numStr.length)
   );
-  inputEle.value = replacement;
   inputEle.dispatchEvent(new Event('input'));
 });
 
